@@ -54,17 +54,44 @@ namespace PickMyCropBackend.Controllers
             {
                 SqlCommand cmd = new SqlCommand("select MAX(id) from [dbo].[Table] ", con);
 
-                con.Open();
-                var reader = cmd.ExecuteReader();
+                try {
+                    con.Open();
+                    var reader = cmd.ExecuteReader();
 
-                while (reader.Read())
-                {
-                    maxId = reader.GetInt32(0);
+                    while (reader.Read())
+                    {
+                        maxId = reader.GetInt32(0);
+                    }
+
+                    maxId = maxId + 1;
+                    con.Close();
+
+                    cmd = new SqlCommand("Insert_Person", con);
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("id", maxId);
+                    cmd.Parameters.AddWithValue("FirstName", person.FirstName);
+                    cmd.Parameters.AddWithValue("LastName", person.LastName);
+                    cmd.Parameters.AddWithValue("Email", person.Email);
+                    cmd.Parameters.AddWithValue("ContactNumber", person.ContactNumber);
+                    cmd.Parameters.AddWithValue("AddressLine_1", person.AddressLine_1);
+                    cmd.Parameters.AddWithValue("AddressLine_2", person.AddressLine_2);
+                    cmd.Parameters.AddWithValue("City", person.City);
+                    cmd.Parameters.AddWithValue("Details", person.Details);
+                    cmd.Parameters.AddWithValue("Image", person.Image);
+                    
+                    con.Open();
+                    int k = cmd.ExecuteNonQuery();
+
+
+                } catch(Exception ex){
+
+                    Console.WriteLine(ex.Message);
+
                 }
-               
-
-                maxId = maxId + 1;
-
+                finally
+                {
+                    con.Close();
+                }
 
             }
 
