@@ -8,13 +8,15 @@ using System.Net.Http;
 using System.Web.Http;
 
 using PickMyCropBackend.Models;
+using MySql.Data.MySqlClient;
 
 namespace PickMyCropBackend.Controllers
 {
-    
+ [AllowAnonymous]   
     public class PersonController : ApiController
     {
         String CS = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        string connString = "SERVER=www.xtreamehost.com;PORT=3306;DATABASE=;UID=;PASSWORD=;";
         Person person;
 
         // GET api/Person
@@ -45,6 +47,25 @@ namespace PickMyCropBackend.Controllers
                 con.Close();
             } 
             return person;
+        }
+
+
+        public String Get()
+        {
+
+            using (MySqlConnection con = new MySqlConnection(connString))
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT `RollIdTable`.`Id`, `RollIdTable`.`RollName` FROM `kamalanath_farmers`.`RollIdTable`; ", con);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    return reader.GetString(reader.GetOrdinal("Id"));
+                }
+
+            }
+            return "okay";
         }
 
         public void Post([FromBody]Person person)

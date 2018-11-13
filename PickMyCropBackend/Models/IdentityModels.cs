@@ -12,6 +12,7 @@ namespace PickMyCropBackend.Models
     {
         public string FirstName { get; internal set; }
         public string LastName { get; internal set; }
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
