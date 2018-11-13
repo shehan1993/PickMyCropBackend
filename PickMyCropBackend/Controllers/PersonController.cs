@@ -9,6 +9,8 @@ using System.Web.Http;
 
 using PickMyCropBackend.Models;
 using MySql.Data.MySqlClient;
+using System.Security.Claims;
+using System.Collections;
 
 namespace PickMyCropBackend.Controllers
 {
@@ -23,8 +25,9 @@ namespace PickMyCropBackend.Controllers
         public Person Get(int id)
         {
            person = new Person();
-            
-
+            var identityClaims = (ClaimsIdentity)User.Identity;
+            IEnumerable < Claim > claims= identityClaims.Claims;
+            var username=identityClaims.FindFirst("UserName").Value;
             using (SqlConnection con = new SqlConnection(CS))
             {
                 SqlCommand cmd = new SqlCommand("select * from [dbo].[Table] where id="+id +"" , con);
