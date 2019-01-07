@@ -18,7 +18,7 @@ namespace PickMyCropBackend.Controllers
     public class PersonController : ApiController
     {
         String CS = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        string connString = "SERVER=www.xtreamehost.com;PORT=3306;DATABASE=;UID=;PASSWORD=;";
+        string connString = "SERVER=www.xtreamehost.com;PORT=3306;DATABASE=kamalanath_farmers;UID=farmerproject;PASSWORD=farmer@2018;";
         Person person;
 
         // GET api/Person
@@ -53,24 +53,36 @@ namespace PickMyCropBackend.Controllers
         }
 
 
-        public String Get()
-        {
 
-            using (MySqlConnection con = new MySqlConnection(connString))
-            {
-                MySqlCommand cmd = new MySqlCommand("SELECT `RollIdTable`.`Id`, `RollIdTable`.`RollName` FROM `kamalanath_farmers`.`RollIdTable`; ", con);
-                con.Open();
-                var reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
+        //[Route("Farmer")]
+        //public FarmerDetails GetAll() {
+        //    FarmerDetails person = new FarmerDetails();
+        //    using (MySqlConnection con = new MySqlConnection(connString))
+        //    {
+        //        MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalanath_farmers.UserDetailsTable; ", con);
+        //        con.Open();
+        //        var reader = cmd.ExecuteReader();
+        //        while (reader.Read())
+        //        {
+        //            person.UserId = reader.GetInt32(reader.GetOrdinal("UserId"));
+        //            person.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+        //            person.LastName = reader.GetString(reader.GetOrdinal("LastName"));
+        //            //person.Email = reader.GetString(reader.GetOrdinal("Email"));
+        //            person.ContactNumber = reader.GetInt32(reader.GetOrdinal("Phone"));
+        //            person.AddressLine_1 = reader.GetString(reader.GetOrdinal("AddressLine_1"));
+        //            person.AddressLine_2 = reader.GetString(reader.GetOrdinal("AddressLine_2"));
+        //            person.City = reader.GetString(reader.GetOrdinal("City"));
+        //            person.Details = reader.GetString(reader.GetOrdinal("Description"));
+        //            person.RollId = reader.GetInt32(reader.GetOrdinal("RollId"));
+        //            //return reader.GetString(reader.GetOrdinal("Id"));
+        //            return person;
+        //        }
 
-                    return reader.GetString(reader.GetOrdinal("Id"));
-                }
+        //    }
 
-            }
-            return "okay";
-        }
-
+        //    return person;
+        
+        //}
         public void Post([FromBody]Person person)
         {
             int maxId = 0;
