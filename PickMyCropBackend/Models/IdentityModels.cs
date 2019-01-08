@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
+using MySql.Data.Entity;
 
 namespace PickMyCropBackend.Models
 {
@@ -23,19 +24,22 @@ namespace PickMyCropBackend.Models
         }
     }
 
+    [DbConfigurationType(typeof(MySqlEFConfiguration))]
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
+        public ApplicationDbContext(): this("MyConnection") { }
+        public ApplicationDbContext(string connStringName) : base(connStringName) { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             //ASPNetUsers -> User
-            modelBuilder.Entity<ApplicationUser>().ToTable("User");
+            modelBuilder.Entity<ApplicationUser>().ToTable("User").Property(c => c.UserName)
+                .HasMaxLength(128)
+                .IsRequired();
             //ASPNetRoles -> Role
-            modelBuilder.Entity<IdentityRole>().ToTable("Role");
+            modelBuilder.Entity<IdentityRole>().ToTable("Role").Property(c => c.Name)
+                .HasMaxLength(128)
+                .IsRequired();
             //ASPNetUserClaims -> UserClaims
             modelBuilder.Entity<IdentityUserClaim>().ToTable("UserClaims");
             //ASPNetUserLogin -> UserLogin
