@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using MySql.Data.Entity;
+using PickMyCropBackend.Models.Data;
 
 namespace PickMyCropBackend.Models
 {
@@ -46,6 +47,26 @@ namespace PickMyCropBackend.Models
             modelBuilder.Entity<IdentityUserLogin>().ToTable("UserLogin");
             //ASPNetUserRole -> UserRole
             modelBuilder.Entity<IdentityUserRole>().ToTable("UserRole");
+
+            modelBuilder.Entity<VegCategoryDTO>().ToTable("tblVegCategory");
+            modelBuilder.Entity<QuestionDTO>().ToTable("tblQuestion");
+            modelBuilder.Entity<AnswerDTO>().ToTable("tblAnswers");
+            modelBuilder.Entity<QuestionDTO>()
+                .HasMany<VegCategoryDTO>(s => s.tags)
+                .WithMany(c => c.Questions)
+                .Map(cs =>
+                {
+                    cs.MapLeftKey("QuestiontRefId");
+                    cs.MapRightKey("VegCategoryRefId");
+                    cs.ToTable("QuestiontVegCategory");
+                });
+            modelBuilder.Entity<AnswerDTO>()
+            .HasRequired<QuestionDTO>(s => s.Question)
+            .WithMany(g => g.answers)
+            .HasForeignKey<int>(s => s.QuestionId)
+            .WillCascadeOnDelete();
+
+
         }
         public static ApplicationDbContext Create()
         {
