@@ -3,10 +3,34 @@ namespace PickMyCropBackend.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.tblAnswers",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Answar = c.String(unicode: false),
+                        vots = c.Int(nullable: false),
+                        userId = c.String(unicode: false),
+                        QuestionId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.tblQuestion",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(unicode: false),
+                        question = c.String(unicode: false),
+                        votes = c.Int(nullable: false),
+                        starterId = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
             CreateTable(
                 "dbo.Role",
                 c => new
@@ -77,6 +101,16 @@ namespace PickMyCropBackend.Migrations
                 .ForeignKey("dbo.User", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
+            CreateTable(
+                "dbo.tblVegCategory",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(unicode: false),
+                        Description = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
         }
         
         public override void Down()
@@ -91,11 +125,14 @@ namespace PickMyCropBackend.Migrations
             DropIndex("dbo.UserRole", new[] { "RoleId" });
             DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.Role", "RoleNameIndex");
+            DropTable("dbo.tblVegCategory");
             DropTable("dbo.UserLogin");
             DropTable("dbo.UserClaims");
             DropTable("dbo.User");
             DropTable("dbo.UserRole");
             DropTable("dbo.Role");
+            DropTable("dbo.tblQuestion");
+            DropTable("dbo.tblAnswers");
         }
     }
 }

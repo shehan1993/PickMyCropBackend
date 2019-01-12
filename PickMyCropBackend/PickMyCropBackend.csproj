@@ -240,6 +240,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\QnA\AnswerController.cs" />
     <Compile Include="Controllers\DashboardAdvertiseController.cs" />
     <Compile Include="Controllers\FarmerDetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -250,37 +251,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201901081007285_Initial.cs" />
-    <Compile Include="Migrations\201901081007285_Initial.Designer.cs">
-      <DependentUpon>201901081007285_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901100330513_Questions and Answers table add.cs" />
-    <Compile Include="Migrations\201901100330513_Questions and Answers table add.Designer.cs">
-      <DependentUpon>201901100330513_Questions and Answers table add.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901100356375_Questions and Answers table add change.cs" />
-    <Compile Include="Migrations\201901100356375_Questions and Answers table add change.Designer.cs">
-      <DependentUpon>201901100356375_Questions and Answers table add change.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901101605202_Veg Category Controller done.cs" />
-    <Compile Include="Migrations\201901101605202_Veg Category Controller done.Designer.cs">
-      <DependentUpon>201901101605202_Veg Category Controller done.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901101739173_add tables to main context.cs" />
-    <Compile Include="Migrations\201901101739173_add tables to main context.Designer.cs">
-      <DependentUpon>201901101739173_add tables to main context.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901110429058_update category table.cs" />
-    <Compile Include="Migrations\201901110429058_update category table.Designer.cs">
-      <DependentUpon>201901110429058_update category table.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901111607347_2018.01.11 9.31PM.cs" />
-    <Compile Include="Migrations\201901111607347_2018.01.11 9.31PM.Designer.cs">
-      <DependentUpon>201901111607347_2018.01.11 9.31PM.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201901111649559_2018.01.11 10.18PM.cs" />
-    <Compile Include="Migrations\201901111649559_2018.01.11 10.18PM.Designer.cs">
-      <DependentUpon>201901111649559_2018.01.11 10.18PM.cs</DependentUpon>
+    <Compile Include="Migrations\201901112221338_initial.cs" />
+    <Compile Include="Migrations\201901112221338_initial.Designer.cs">
+      <DependentUpon>201901112221338_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -293,6 +266,7 @@
     <Compile Include="Models\FarmerDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\ViewModels\AnswerVM.cs" />
     <Compile Include="Models\ViewModels\QuestionVM.cs" />
     <Compile Include="Models\ViewModels\VegCategoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -358,6 +332,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Answer\" />
     <Folder Include="Views\Question\" />
   </ItemGroup>
   <ItemGroup>
@@ -369,29 +344,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201901081007285_Initial.resx">
-      <DependentUpon>201901081007285_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901100330513_Questions and Answers table add.resx">
-      <DependentUpon>201901100330513_Questions and Answers table add.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901100356375_Questions and Answers table add change.resx">
-      <DependentUpon>201901100356375_Questions and Answers table add change.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901101605202_Veg Category Controller done.resx">
-      <DependentUpon>201901101605202_Veg Category Controller done.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901101739173_add tables to main context.resx">
-      <DependentUpon>201901101739173_add tables to main context.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901110429058_update category table.resx">
-      <DependentUpon>201901110429058_update category table.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901111607347_2018.01.11 9.31PM.resx">
-      <DependentUpon>201901111607347_2018.01.11 9.31PM.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201901111649559_2018.01.11 10.18PM.resx">
-      <DependentUpon>201901111649559_2018.01.11 10.18PM.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201901112221338_initial.resx">
+      <DependentUpon>201901112221338_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

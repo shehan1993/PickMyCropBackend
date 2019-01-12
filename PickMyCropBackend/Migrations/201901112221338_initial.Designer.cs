@@ -7,13 +7,13 @@ namespace PickMyCropBackend.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class QuestionsandAnswerstableadd : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(QuestionsandAnswerstableadd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201901100330513_Questions and Answers table add"; }
+            get { return "201901112221338_initial"; }
         }
         
         string IMigrationMetadata.Source

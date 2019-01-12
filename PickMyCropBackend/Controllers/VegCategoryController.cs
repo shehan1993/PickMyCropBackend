@@ -1,4 +1,5 @@
-﻿using PickMyCropBackend.Models.Data;
+﻿using PickMyCropBackend.Models;
+using PickMyCropBackend.Models.Data;
 using PickMyCropBackend.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace PickMyCropBackend.Controllers
             //Declare of the model
             List<VegCategoryVM> categoryVMList;
 
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 //init the list
                 categoryVMList = db.VegCategories
@@ -31,7 +32,7 @@ namespace PickMyCropBackend.Controllers
             //Return view with list
             return categoryVMList;
         }
-
+        [AllowAnonymous]
         public VegCategoryVM Post(VegCategoryVM model)
         {
             //if (!ModelState.IsValid)
@@ -39,7 +40,7 @@ namespace PickMyCropBackend.Controllers
             //    return null;
             //}
             VegCategoryDTO dto = new VegCategoryDTO();
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
 
                 dto.Name = model.Name;
@@ -50,9 +51,9 @@ namespace PickMyCropBackend.Controllers
             //_DbContext.SaveChanges();
             return new VegCategoryVM(dto);
         }
-
+        [AllowAnonymous]
         public VegCategoryVM Put(VegCategoryVM model) {
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 VegCategoryDTO dto = db.VegCategories.Find(model.Id);
                 dto.Name = model.Name;
@@ -61,10 +62,10 @@ namespace PickMyCropBackend.Controllers
             }
                 return model;
         }
-
+        [AllowAnonymous]
         public VegCategoryVM Delete(VegCategoryVM model)
         {
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 VegCategoryDTO dto = db.VegCategories.Find(model.Id);
                 db.VegCategories.Remove(dto);

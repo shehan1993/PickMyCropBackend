@@ -15,43 +15,45 @@ namespace PickMyCropBackend.Controllers
     {
         // GET: Question
         [AllowAnonymous]
-        public List<QuestionDTO> Get()
+        public List<QuestionVM> Get()
         {
-            List<QuestionVM> QuestionVMList;
+            List<QuestionVM> QuestionVMList = new List<QuestionVM>();
             List<QuestionDTO> QuestionDTOList;
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 QuestionDTOList = db.Questions
                                     .ToArray()
                                     .ToList();
+                for (int i = 0; i < QuestionDTOList.Count; i++) {
+
+                    int qId = QuestionDTOList[i].Id;
+                    List<AnswerVM> ans = db.Answers.Where(x => x.QuestionId == qId)
+                                         .ToArray().Select(y => new AnswerVM(y)).ToList();
+                    QuestionVM temp = new QuestionVM(QuestionDTOList[i]);
+                    temp.answers=ans;
+                    QuestionVMList.Add(temp);
+                }
             }
-                return QuestionDTOList;
+                return QuestionVMList;
         }
         [AllowAnonymous]
         public QuestionVM Post(QuestionVM model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return null;
-            //}
             QuestionDTO dto = new QuestionDTO();
-            using (Db db = new Db())
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                dto.Id = model.Id;
                 dto.Title = model.Title;
                 dto.votes = model.votes;
                 dto.question = model.question;
-                string userId = "e12a6764-2ab0-4821-9717-b5ecdd2ee857";//User.Identity.GetUserId();
+                string userId = "c234e83d-2d42-4fae-a479-ee35c231b818";//User.Identity.GetUserId();
                 ApplicationUser currentUser = (new ApplicationDbContext()).Users.FirstOrDefault(x => x.Id == userId);
 
-                dto.starter = currentUser;
-                dto.tags = model.tags;
-                dto.answers = model.answers;
+                dto.starterId = currentUser.Id;
+                //dto.tags = model.tags;
 
                 db.Questions.Add(dto);
                 db.SaveChanges();
             }
-            //_DbContext.SaveChanges();
             return new QuestionVM(dto);
         }
     }

@@ -12,9 +12,7 @@ namespace PickMyCropBackend.Models.Data
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual ICollection<QuestionDTO> Questions { get; set; }
     }
 }

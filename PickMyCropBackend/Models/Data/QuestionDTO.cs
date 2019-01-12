@@ -16,8 +16,8 @@ namespace PickMyCropBackend.Models.Data
         public string Title { get; set; }
         public string question { get; set; }
         public int votes { get; set; }
-        public ApplicationUser starter { get; set; }
-        public virtual ICollection<VegCategoryDTO> tags { get; set; }
-        public ICollection<AnswerDTO> answers { get; set; }
+        public string starterId { get; set; }
+        //public virtual ICollection<VegCategoryDTO> tags { get; set; }
+        //public ICollection<AnswerDTO> answers { get; set; }
     }
 }
