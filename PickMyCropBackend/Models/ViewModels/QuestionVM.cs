@@ -24,5 +24,7 @@ namespace PickMyCropBackend.Models.ViewModels
         public String starterId { get; set; }
         public virtual List<VegCategoryDTO> tags { get; set; }
         public List<AnswerVM> answers { get; set; }
+        public int answarcount { get; set; }
+        public string username { get; set; }
     }
 }

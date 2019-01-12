@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using PickMyCropBackend.Models;
 using Microsoft.Owin.Security;
+using System.Web.SessionState;
 
 namespace PickMyCropBackend
 {
@@ -42,6 +43,7 @@ namespace PickMyCropBackend
                 identity.AddClaim(new Claim("FirstName", user.FirstName));
                 identity.AddClaim(new Claim("LastName", user.LastName));
                 identity.AddClaim(new Claim("LoggedOn", DateTime.Now.ToString()));
+                identity.AddClaim(new Claim("UserId", user.Id));
                 context.Validated(identity);
             }
             else

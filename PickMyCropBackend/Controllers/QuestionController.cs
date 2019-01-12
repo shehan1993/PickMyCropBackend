@@ -8,6 +8,9 @@ using PickMyCropBackend.Models.ViewModels;
 using PickMyCropBackend.Models.Data;
 using PickMyCropBackend.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Security;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Security.Claims;
 
 namespace PickMyCropBackend.Controllers
 {
@@ -27,16 +30,52 @@ namespace PickMyCropBackend.Controllers
                 for (int i = 0; i < QuestionDTOList.Count; i++) {
 
                     int qId = QuestionDTOList[i].Id;
-                    List<AnswerVM> ans = db.Answers.Where(x => x.QuestionId == qId)
-                                         .ToArray().Select(y => new AnswerVM(y)).ToList();
+                    int anscount = db.Answers.Where(x => x.QuestionId == qId)
+                                         .ToArray().Count();
+
                     QuestionVM temp = new QuestionVM(QuestionDTOList[i]);
-                    temp.answers=ans;
+                    string userId = QuestionDTOList[i].starterId;
+                    ApplicationUser currentUser = (new ApplicationDbContext()).Users.FirstOrDefault(x => x.Id == userId);
+
+                    temp.username = currentUser.UserName;
+                    temp.answarcount = anscount;
+                    //temp.answers=ans;
                     QuestionVMList.Add(temp);
                 }
             }
                 return QuestionVMList;
         }
+        // GET: Question/id
         [AllowAnonymous]
+        public QuestionVM Get(int id)
+        {
+            QuestionVM QuestionVM = new QuestionVM();
+            QuestionDTO QuestionDTO;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                QuestionDTO = db.Questions.Find(id);
+                if (QuestionDTO==null) {
+                    return null;
+                }
+                int qId = QuestionDTO.Id;
+                List<AnswerVM> ans = db.Answers.Where(x => x.QuestionId == qId)
+                                        .ToArray().Select(y => new AnswerVM(y)).ToList();
+                foreach (AnswerVM temp in ans) {
+                    string ansuserId = temp.userId;
+                    ApplicationUser ansUser = db.Users.FirstOrDefault(x => x.Id == ansuserId);
+                    temp.username = ansUser.UserName;
+                }
+                QuestionVM = new QuestionVM(QuestionDTO);
+                string userId = QuestionDTO.starterId;
+                ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == userId);
+
+                QuestionVM.username = currentUser.UserName;
+                QuestionVM.answers = ans;
+                QuestionVM.answarcount = ans.Count();
+                
+            }
+            return QuestionVM;
+        }
         public QuestionVM Post(QuestionVM model)
         {
             QuestionDTO dto = new QuestionDTO();
@@ -45,8 +84,10 @@ namespace PickMyCropBackend.Controllers
                 dto.Title = model.Title;
                 dto.votes = model.votes;
                 dto.question = model.question;
-                string userId = "c234e83d-2d42-4fae-a479-ee35c231b818";//User.Identity.GetUserId();
-                ApplicationUser currentUser = (new ApplicationDbContext()).Users.FirstOrDefault(x => x.Id == userId);
+                
+                string userId = ((System.Security.Claims.ClaimsIdentity)User.Identity).
+                                FindFirst("UserId").Value;
+                ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == userId);
 
                 dto.starterId = currentUser.Id;
                 //dto.tags = model.tags;

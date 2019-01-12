@@ -21,6 +21,7 @@ namespace PickMyCropBackend.Models.ViewModels
         public string Answar { get; set; }
         public int vots { get; set; }
         public string userId { get; set; }
+        public string username { get; set; }
         public int QuestionId { get; set; }
     }
 
