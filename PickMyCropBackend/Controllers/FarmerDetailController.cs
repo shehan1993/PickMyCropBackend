@@ -19,12 +19,13 @@ namespace PickMyCropBackend.Controllers
         [Route("GetUser")]
         public FarmerDetails GetUser()
         {
-            
+            string userId = ((System.Security.Claims.ClaimsIdentity)User.Identity).
+                                FindFirst("UserId").Value;
             FarmerDetails person = new FarmerDetails();
             using (MySqlConnection con = new MySqlConnection(connString))
             {
                 //MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalanath_farmers.FarmerDetails WHERE farmerId=1; ", con);
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalana_farmers.FarmerDetails WHERE farmerId=1; ", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalana_farmers.FarmerDetails WHERE UserId='" + userId + "'; ", con);
                 con.Open();
                 var reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -34,13 +35,13 @@ namespace PickMyCropBackend.Controllers
                     person.UserName = reader.GetString(reader.GetOrdinal("UserName"));
                     person.LastName = reader.GetString(reader.GetOrdinal("LastName"));
                     person.Email = reader.GetString(reader.GetOrdinal("Email"));
-                    person.ContactNumber = reader.GetString(reader.GetOrdinal("ContactNo"));
-                    person.AddressLine_1 = reader.GetString(reader.GetOrdinal("AddressLine1"));
-                    person.AddressLine_2 = reader.GetString(reader.GetOrdinal("AddressLine2"));
-                    person.City = reader.GetString(reader.GetOrdinal("City"));
-                    person.AboutMe = reader.GetString(reader.GetOrdinal("AboutMe"));
-                    //person.RollId = reader.GetInt32(reader.GetOrdinal("RollId"));
-                    //return reader.GetString(reader.GetOrdinal("Id"));
+                    person.ContactNumber = reader.IsDBNull(reader.GetOrdinal("ContactNo")) ? null : reader.GetString(reader.GetOrdinal("ContactNo"));
+                    person.AddressLine_1 = reader.IsDBNull(reader.GetOrdinal("AddressLine1")) ? null : reader.GetString(reader.GetOrdinal("AddressLine1"));
+                    person.AddressLine_2 = reader.IsDBNull(reader.GetOrdinal("AddressLine2")) ? null : reader.GetString(reader.GetOrdinal("AddressLine2"));
+                    person.City = reader.IsDBNull(reader.GetOrdinal("City")) ? null : reader.GetString(reader.GetOrdinal("City"));
+                    person.AboutMe = reader.IsDBNull(reader.GetOrdinal("AboutMe")) ? null : reader.GetString(reader.GetOrdinal("AboutMe"));
+                    person.roleType= reader.IsDBNull(reader.GetOrdinal("RoleType")) ? 9 : reader.GetInt32(reader.GetOrdinal("RoleType"));
+                    
                     return person;
                 }
 
@@ -54,6 +55,9 @@ namespace PickMyCropBackend.Controllers
         [Route("UpdateUser")]
         public bool UpdateUser(FarmerDetails person)
         {
+          
+            string userId = ((System.Security.Claims.ClaimsIdentity)User.Identity).
+                                FindFirst("UserId").Value;
             //FarmerDetails person = new FarmerDetails();
             using (MySqlConnection con = new MySqlConnection(connString))
             {
@@ -67,7 +71,8 @@ namespace PickMyCropBackend.Controllers
                     "',`AddressLine2` = '" + person.AddressLine_2 +
                     "',`City` = '" + person.City +
                     "',`AboutMe` = '" + person.AboutMe +
-                    "' WHERE (`farmerId` = '" + person.FarmerId + "');";
+                    "',`RoleType` = '" + person.roleType +
+                    "' WHERE (`UserId` = '" + userId + "');";
                 
                 MySqlCommand cmd = new MySqlCommand(temp, con);
                

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using PickMyCropBackend.Models;
 using PickMyCropBackend.Providers;
 using PickMyCropBackend.Results;
+using MySql.Data.MySqlClient;
 
 namespace PickMyCropBackend.Controllers
 {
@@ -348,7 +349,33 @@ namespace PickMyCropBackend.Controllers
             user.FirstName = model.FirstName;
             user.LastName = model.LastName;
             IdentityResult result = manager.Create(user, model.Password);
+            if (result.Succeeded == true)
+            {
+                updateDetailsTableTwo(user.Id, user.UserName, user.FirstName, user.LastName, user.Email);
+            }
             return result;
+        }
+        public static void updateDetailsTableTwo(string id,string uName,string fName,string lName,string email) {
+            string connString = "SERVER=gator3272.hostgator.com;PORT=3306;DATABASE=kamalana_farmers;UID=kamalana_farmers;PASSWORD=farmers;";
+
+            using (MySqlConnection con = new MySqlConnection(connString))
+            {
+                //string temp = UPDATE `kamalanath_farmers`.`UserDetailsTable` SET `FirstName` = 'Tharindu', `LastName` = 'Dananjaya', `AddressLine_1` = 'Temp', `AddressLine_2` = 'Temp2', `City` = 'Matara', `RollId` = '1', `Phone` = '74747744', `Description` = 'I\'m WEll ' WHERE;
+                string temp = "INSERT INTO `kamalana_farmers`.`FarmerDetails` (`UserName`, `FirstName`, `LastName`, `Email`, `UserId`) VALUES('" + uName +
+                    "', '" + fName +
+                    "','" + lName +
+                    "','" + email +
+                    "','" + id +  
+                    "');";
+                
+                MySqlCommand cmd = new MySqlCommand(temp, con);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+
+
+            }
+
         }
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

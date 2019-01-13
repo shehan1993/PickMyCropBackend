@@ -15,7 +15,8 @@ namespace PickMyCropBackend.Models
         public string pathValue { get; set; }
      
         public string Email { get; set; }
-        //public int RollId { get; set; }
+        public int roleType { get; set; }
+        //public Boolean buyerrole { get; set; }
         public string ContactNumber { get; set; }
         public string AddressLine_1 { get; set; }
         public string AddressLine_2 { get; set; }
