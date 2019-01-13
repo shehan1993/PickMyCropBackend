@@ -31,6 +31,9 @@ namespace PickMyCropBackend.Models
         public DbSet<VegCategoryDTO> VegCategories { get; set; }
         public DbSet<QuestionDTO> Questions { get; set; }
         public DbSet<AnswerDTO> Answers { get; set; }
+        public DbSet<ImagesForAdDTO> ImageForAdvertiestment { get; set; }
+        //public DbSet<AdvertisetmentDTO> Advertisetment { get; set; }
+        public DbSet<AdvertisetmentDTO> Advertisetment { get; set; }
         public ApplicationDbContext(): this("MyConnection") { }
         public ApplicationDbContext(string connStringName) : base(connStringName) { }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
