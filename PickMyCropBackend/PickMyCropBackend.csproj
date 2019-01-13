@@ -61,6 +61,42 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.EntityFrameworkCore, Version=1.1.6.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.EntityFrameworkCore.1.1.6\lib\net451\Microsoft.EntityFrameworkCore.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Abstractions.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Caching.Memory.1.1.1\lib\net451\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.1.1.0\lib\netstandard1.1\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.1.1.1\lib\netstandard1.1\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.1.1.1\lib\netstandard1.0\Microsoft.Extensions.Options.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.1.1.0\lib\netstandard1.0\Microsoft.Extensions.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -77,13 +113,37 @@
       <HintPath>..\packages\MySql.Data.Entity.6.8.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Collections.Immutable.1.3.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Interactive.Async, Version=3.0.0.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Interactive.Async.3.0.0\lib\net45\System.Interactive.Async.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.3.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Cors, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -240,6 +300,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Advertestment\AdvertiestmentController.cs" />
+    <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\QnA\AnswerController.cs" />
     <Compile Include="Controllers\DashboardAdvertiseController.cs" />
     <Compile Include="Controllers\FarmerDetailController.cs" />
@@ -259,17 +321,48 @@
     <Compile Include="Migrations\201901121044598_2019.01.12 4.14PM.Designer.cs">
       <DependentUpon>201901121044598_2019.01.12 4.14PM.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901130534500_AddvertiestmentAndImagesFroAd.cs" />
+    <Compile Include="Migrations\201901130534500_AddvertiestmentAndImagesFroAd.Designer.cs">
+      <DependentUpon>201901130534500_AddvertiestmentAndImagesFroAd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131010030_changeImageDataFormatToString.cs" />
+    <Compile Include="Migrations\201901131010030_changeImageDataFormatToString.Designer.cs">
+      <DependentUpon>201901131010030_changeImageDataFormatToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131027100_addUserIdToAdvertisement.cs" />
+    <Compile Include="Migrations\201901131027100_addUserIdToAdvertisement.Designer.cs">
+      <DependentUpon>201901131027100_addUserIdToAdvertisement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131113212_advertiestmentChange.cs" />
+    <Compile Include="Migrations\201901131113212_advertiestmentChange.Designer.cs">
+      <DependentUpon>201901131113212_advertiestmentChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131134537_advert.cs" />
+    <Compile Include="Migrations\201901131134537_advert.Designer.cs">
+      <DependentUpon>201901131134537_advert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131139260_removeAdvertiesmnt.cs" />
+    <Compile Include="Migrations\201901131139260_removeAdvertiesmnt.Designer.cs">
+      <DependentUpon>201901131139260_removeAdvertiesmnt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901131147059_test.cs" />
+    <Compile Include="Migrations\201901131147059_test.Designer.cs">
+      <DependentUpon>201901131147059_test.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DashboardAdvertise.cs" />
+    <Compile Include="Models\Data\AdvertisetmentDTO.cs" />
     <Compile Include="Models\Data\AnswerDTO.cs" />
     <Compile Include="Models\Data\Db.cs" />
+    <Compile Include="Models\Data\ImagesForAdDTO.cs" />
     <Compile Include="Models\Data\QuestionDTO.cs" />
     <Compile Include="Models\Data\VegCategoryDTO.cs" />
     <Compile Include="Models\FarmerDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\ViewModels\AdvertiestmentVM.cs" />
     <Compile Include="Models\ViewModels\AnswerVM.cs" />
     <Compile Include="Models\ViewModels\QuestionVM.cs" />
     <Compile Include="Models\ViewModels\VegCategoryVM.cs" />
@@ -336,7 +429,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Advertiestment\" />
     <Folder Include="Views\Answer\" />
+    <Folder Include="Views\Image\" />
     <Folder Include="Views\Question\" />
   </ItemGroup>
   <ItemGroup>
@@ -353,6 +448,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901121044598_2019.01.12 4.14PM.resx">
       <DependentUpon>201901121044598_2019.01.12 4.14PM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901130534500_AddvertiestmentAndImagesFroAd.resx">
+      <DependentUpon>201901130534500_AddvertiestmentAndImagesFroAd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131010030_changeImageDataFormatToString.resx">
+      <DependentUpon>201901131010030_changeImageDataFormatToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131027100_addUserIdToAdvertisement.resx">
+      <DependentUpon>201901131027100_addUserIdToAdvertisement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131113212_advertiestmentChange.resx">
+      <DependentUpon>201901131113212_advertiestmentChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131134537_advert.resx">
+      <DependentUpon>201901131134537_advert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131139260_removeAdvertiesmnt.resx">
+      <DependentUpon>201901131139260_removeAdvertiesmnt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901131147059_test.resx">
+      <DependentUpon>201901131147059_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
