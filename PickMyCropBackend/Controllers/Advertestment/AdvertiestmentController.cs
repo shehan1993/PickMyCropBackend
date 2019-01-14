@@ -23,9 +23,10 @@ namespace PickMyCropBackend.Controllers.Advertestment
                 {
                     throw new Exception("No such advertisetment");
                 }
-                ImagesForAdDTO img =db.ImageForAdvertiestment.FirstOrDefault(x => x.AdvertisetmentId == adDTO.Id);
+                List<ImagesForAdDTO> imgObj =db.ImageForAdvertiestment.Where(x => x.AdvertisetmentId == adDTO.Id).ToArray().ToList();
                 AdvertisetmentVM model = new AdvertisetmentVM(adDTO);
-                model.Image = img.Image;
+                string[] imgs= imgObj.Select(x => x.Image).ToArray();
+                model.Image = imgs;
                 return model;
             }   
         }
@@ -47,15 +48,59 @@ namespace PickMyCropBackend.Controllers.Advertestment
                 dto.userId = userId;
                 db.Advertisetment.Add(dto);
                 db.SaveChanges();
-
-                ImagesForAdDTO imgdto = new ImagesForAdDTO();
-                imgdto.AdvertisetmentId =dto.Id;
-                imgdto.Image = model.Image;
-
-                db.ImageForAdvertiestment.Add(imgdto);
-                db.SaveChanges();
+                ImagesForAdDTO imgdto;
+                foreach (string img in model.Image) {
+                    imgdto = new ImagesForAdDTO();
+                    imgdto.AdvertisetmentId = dto.Id;
+                    imgdto.Image = img;
+                    db.ImageForAdvertiestment.Add(imgdto);
+                    db.SaveChanges();
+                }
+                model.Id = dto.Id;
             }
-            return null;
+            return model;
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/AdvertCountByCategory")]
+        public List<VegitablecountbyCategoryVM> AdvertisementcountbyCategory() {
+            List<VegCategoryVM> categoryVMList;
+            List<VegitablecountbyCategoryVM> output = new List<VegitablecountbyCategoryVM>();
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                categoryVMList = db.VegCategories
+                                    .ToArray()
+                                    .Select(x => new VegCategoryVM(x))
+                                    .ToList();
+                VegitablecountbyCategoryVM model = new VegitablecountbyCategoryVM();
+                foreach (VegCategoryVM cat in categoryVMList) {
+                    int count=db.Advertisetment.Where(x => x.vegtype == cat.Name).ToArray().Length;
+                    output.Add(new VegitablecountbyCategoryVM(cat, count));
+                }
+            }
+            return output;
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/AdvertByCategory/{id}")]
+        public List<AdvertisetmentVM> AdvertByCategory(int id)
+        {
+            List<AdvertisetmentVM> categoryVMList;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                string vegType = db.VegCategories.Find(id).Name;
+                categoryVMList = db.Advertisetment.Where(x => x.vegtype == vegType)
+                                    .ToArray()
+                                    .Select(x => new AdvertisetmentVM(x))
+                                    .ToList();
+                foreach (AdvertisetmentVM ad in categoryVMList)
+                {
+                    List<ImagesForAdDTO> imgObj = db.ImageForAdvertiestment.Where(x => x.AdvertisetmentId == ad.Id).ToArray().ToList();
+                    string[] imgs = imgObj.Select(x => x.Image).ToArray();
+                    ad.Image = imgs;
+                }
+            }
+            return categoryVMList;
         }
     }
 }

@@ -349,6 +349,10 @@
     <Compile Include="Migrations\201901131147059_test.Designer.cs">
       <DependentUpon>201901131147059_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201901132024045_vegcategoryImage.cs" />
+    <Compile Include="Migrations\201901132024045_vegcategoryImage.Designer.cs">
+      <DependentUpon>201901132024045_vegcategoryImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -366,6 +370,7 @@
     <Compile Include="Models\ViewModels\AnswerVM.cs" />
     <Compile Include="Models\ViewModels\QuestionVM.cs" />
     <Compile Include="Models\ViewModels\VegCategoryVM.cs" />
+    <Compile Include="Models\ViewModels\VegitablecountbyCategoryVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -469,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901131147059_test.resx">
       <DependentUpon>201901131147059_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901132024045_vegcategoryImage.resx">
+      <DependentUpon>201901132024045_vegcategoryImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

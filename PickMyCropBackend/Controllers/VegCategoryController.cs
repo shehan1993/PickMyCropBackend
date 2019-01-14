@@ -13,7 +13,6 @@ namespace PickMyCropBackend.Controllers
     public class VegCategoryController: ApiController
     {
         // GET: VegCategories
-        [AllowAnonymous]
         //[Route("VegCategories")]
         public List<VegCategoryVM> Get()
         {
@@ -32,19 +31,15 @@ namespace PickMyCropBackend.Controllers
             //Return view with list
             return categoryVMList;
         }
-        [AllowAnonymous]
+
         public VegCategoryVM Post(VegCategoryVM model)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return null;
-            //}
             VegCategoryDTO dto = new VegCategoryDTO();
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-
                 dto.Name = model.Name;
                 dto.Description = model.Description;
+                dto.Image = model.Image;
                 db.VegCategories.Add(dto);
                 db.SaveChanges();
             }

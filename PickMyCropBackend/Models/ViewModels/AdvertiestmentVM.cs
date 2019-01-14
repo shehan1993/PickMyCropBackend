@@ -24,6 +24,6 @@ namespace PickMyCropBackend.Models.ViewModels
         public string vegtype { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
-        public string Image { get; set; }
+        public string[] Image { get; set; }
     }
 }

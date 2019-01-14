@@ -14,9 +14,11 @@ namespace PickMyCropBackend.Models.ViewModels
             Id = row.Id;
             Name = row.Name;
             Description = row.Description;
+            Image = row.Image;
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Image { get; set; }
     }
 }
