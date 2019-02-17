@@ -18,7 +18,7 @@ namespace PickMyCropBackend.Controllers
     public class PersonController : ApiController
     {
         String CS = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        string connString = "SERVER=www.xtreamehost.com;PORT=3306;DATABASE=;UID=;PASSWORD=;";
+        string connString = "SERVER=;PORT=3306;DATABASE=;UID=;PASSWORD=;";
         Person person;
 
         // GET api/Person
@@ -71,45 +71,50 @@ namespace PickMyCropBackend.Controllers
             return "okay";
         }
 
-        public void Post([FromBody]Person person)
+
+        public String Post([FromBody]Person person)
         {
             int maxId = 0;
             using (SqlConnection con = new SqlConnection(CS))
             {
-                SqlCommand cmd = new SqlCommand("select MAX(id) from [dbo].[Table] ", con);
+               // SqlCommand cmd = new SqlCommand("select MAX(id) from [dbo].[Table] ", con);
 
                 try {
-                    con.Open();
-                    var reader = cmd.ExecuteReader();
+                    //con.Open();
+                    //var reader = cmd.ExecuteReader();
 
-                    while (reader.Read())
-                    {
-                        maxId = reader.GetInt32(0);
-                    }
+                    //while (reader.Read())
+                    //{
+                    //    maxId = reader.GetInt32(0);
+                    //}
 
-                    maxId = maxId + 1;
-                    con.Close();
+                    //maxId = maxId + 1;
+                    //con.Close();
 
-                    cmd = new SqlCommand("Insert_Person", con);
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("id", maxId);
-                    cmd.Parameters.AddWithValue("FirstName", person.FirstName);
-                    cmd.Parameters.AddWithValue("LastName", person.LastName);
-                    cmd.Parameters.AddWithValue("Email", person.Email);
-                    cmd.Parameters.AddWithValue("ContactNumber", person.ContactNumber);
-                    cmd.Parameters.AddWithValue("AddressLine_1", person.AddressLine_1);
-                    cmd.Parameters.AddWithValue("AddressLine_2", person.AddressLine_2);
-                    cmd.Parameters.AddWithValue("City", person.City);
-                    cmd.Parameters.AddWithValue("Details", person.Details);
-                    cmd.Parameters.AddWithValue("Image", person.Image);
-                    
+                    SqlCommand cmd = new SqlCommand("UPDATE `kamalanath_farmers`.`RollIdTable` SET `RollName` = @RollName WHERE `Id` = @Id; ");
+
+                    //cmd = new SqlCommand("Insert_Person", con);
+                    //cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //cmd.Parameters.AddWithValue("id", maxId);
+                    //cmd.Parameters.AddWithValue("FirstName", person.FirstName);
+                    //cmd.Parameters.AddWithValue("LastName", person.LastName);
+                    //cmd.Parameters.AddWithValue("Email", person.Email);
+                    //cmd.Parameters.AddWithValue("ContactNumber", person.ContactNumber);
+                    //cmd.Parameters.AddWithValue("AddressLine_1", person.AddressLine_1);
+                    //cmd.Parameters.AddWithValue("AddressLine_2", person.AddressLine_2);
+                    //cmd.Parameters.AddWithValue("City", person.City);
+                    //cmd.Parameters.AddWithValue("Details", person.Details);
+                    //cmd.Parameters.AddWithValue("Image", person.Image);
+                    cmd.Parameters.AddWithValue("@RollName", "NewRollName");
+                    cmd.Parameters.AddWithValue("@Id", 1);
+
                     con.Open();
                     int k = cmd.ExecuteNonQuery();
 
 
                 } catch(Exception ex){
 
-                    Console.WriteLine(ex.Message);
+                    return ex.Message;
 
                 }
                 finally
@@ -120,7 +125,7 @@ namespace PickMyCropBackend.Controllers
             }
 
 
-
+            return "okay";
         }
 
     }
