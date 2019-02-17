@@ -18,5 +18,6 @@ namespace PickMyCropBackend.Models.Data
         public double lat { get; set; }
         public double lng { get; set; }
         public string userId { get; set; }
+        public int vegid { get; set; }
     }
 }

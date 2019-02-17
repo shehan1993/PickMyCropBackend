@@ -41,6 +41,7 @@ namespace PickMyCropBackend.Controllers.Advertestment
                                 FindFirst("UserId").Value;
                 AdvertisetmentDTO dto = new AdvertisetmentDTO();
                 dto.vegtype = model.vegtype;
+                dto.vegid = model.vegid;
                 dto.amount = model.amount;
                 dto.price = model.price;
                 dto.lat = model.lat;

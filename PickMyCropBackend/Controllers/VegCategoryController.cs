@@ -14,6 +14,7 @@ namespace PickMyCropBackend.Controllers
     {
         // GET: VegCategories
         //[Route("VegCategories")]
+        [AllowAnonymous]
         public List<VegCategoryVM> Get()
         {
             //Declare of the model

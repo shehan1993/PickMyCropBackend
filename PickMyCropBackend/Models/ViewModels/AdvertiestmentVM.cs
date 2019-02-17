@@ -15,6 +15,7 @@ namespace PickMyCropBackend.Models.ViewModels
             price = row.price;
             amount = row.amount;
             vegtype = row.vegtype;
+            vegid = row.vegid;
             lat = row.lat;
             lng = row.lng;
         }
@@ -22,6 +23,7 @@ namespace PickMyCropBackend.Models.ViewModels
         public int price { get; set; }
         public int amount { get; set; }
         public string vegtype { get; set; }
+        public int vegid { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
         public string[] Image { get; set; }

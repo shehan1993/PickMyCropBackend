@@ -18,7 +18,7 @@ namespace PickMyCropBackend.Controllers
     public class PersonController : ApiController
     {
         String CS = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
-        string connString = "SERVER=www.xtreamehost.com;PORT=3306;DATABASE=kamalanath_farmers;UID=farmerproject;PASSWORD=farmer@2018;";
+        //string connString = "SERVER=;PORT=3306;DATABASE=;UID=;PASSWORD=;";
         Person person;
 
         // GET api/Person
