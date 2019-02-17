@@ -17,11 +17,13 @@ namespace PickMyCropBackend.Models.ViewModels
             vegtype = row.vegtype;
             lat = row.lat;
             lng = row.lng;
+            userId = row.userId;
         }
         public int Id { get; set; }
         public int price { get; set; }
         public int amount { get; set; }
         public string vegtype { get; set; }
+        public string userId { get; set; }
         public double lat { get; set; }
         public double lng { get; set; }
         public string[] Image { get; set; }

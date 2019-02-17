@@ -40,8 +40,42 @@ namespace PickMyCropBackend.Controllers
                     person.AddressLine_2 = reader.IsDBNull(reader.GetOrdinal("AddressLine2")) ? null : reader.GetString(reader.GetOrdinal("AddressLine2"));
                     person.City = reader.IsDBNull(reader.GetOrdinal("City")) ? null : reader.GetString(reader.GetOrdinal("City"));
                     person.AboutMe = reader.IsDBNull(reader.GetOrdinal("AboutMe")) ? null : reader.GetString(reader.GetOrdinal("AboutMe"));
-                    person.roleType= reader.IsDBNull(reader.GetOrdinal("RoleType")) ? 9 : reader.GetInt32(reader.GetOrdinal("RoleType"));
-                    
+                    person.roleType = reader.IsDBNull(reader.GetOrdinal("RoleType")) ? 9 : reader.GetInt32(reader.GetOrdinal("RoleType"));
+                    person.imageSrc = reader.IsDBNull(reader.GetOrdinal("FilePath")) ? null : reader.GetString(reader.GetOrdinal("FilePath"));
+                    return person;
+                }
+
+            }
+
+            return person;
+
+        }
+        [HttpGet]
+        [Route("GetUsersp/{id}")]
+        public FarmerDetails GetUsersp(String id)
+        {
+            string userId = id;
+            FarmerDetails person = new FarmerDetails();
+            using (MySqlConnection con = new MySqlConnection(connString))
+            {
+                //MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalanath_farmers.FarmerDetails WHERE farmerId=1; ", con);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM kamalana_farmers.FarmerDetails WHERE UserId='" + userId + "'; ", con);
+                con.Open();
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    person.FarmerId = reader.GetInt32(reader.GetOrdinal("FarmerId"));
+                    person.FirstName = reader.GetString(reader.GetOrdinal("FirstName"));
+                    person.UserName = reader.GetString(reader.GetOrdinal("UserName"));
+                    person.LastName = reader.GetString(reader.GetOrdinal("LastName"));
+                    person.Email = reader.GetString(reader.GetOrdinal("Email"));
+                    person.ContactNumber = reader.IsDBNull(reader.GetOrdinal("ContactNo")) ? null : reader.GetString(reader.GetOrdinal("ContactNo"));
+                    person.AddressLine_1 = reader.IsDBNull(reader.GetOrdinal("AddressLine1")) ? null : reader.GetString(reader.GetOrdinal("AddressLine1"));
+                    person.AddressLine_2 = reader.IsDBNull(reader.GetOrdinal("AddressLine2")) ? null : reader.GetString(reader.GetOrdinal("AddressLine2"));
+                    person.City = reader.IsDBNull(reader.GetOrdinal("City")) ? null : reader.GetString(reader.GetOrdinal("City"));
+                    person.AboutMe = reader.IsDBNull(reader.GetOrdinal("AboutMe")) ? null : reader.GetString(reader.GetOrdinal("AboutMe"));
+                    person.roleType = reader.IsDBNull(reader.GetOrdinal("RoleType")) ? 9 : reader.GetInt32(reader.GetOrdinal("RoleType"));
+                    person.imageSrc = reader.IsDBNull(reader.GetOrdinal("FilePath")) ? null : reader.GetString(reader.GetOrdinal("FilePath"));
                     return person;
                 }
 
@@ -55,7 +89,7 @@ namespace PickMyCropBackend.Controllers
         [Route("UpdateUser")]
         public bool UpdateUser(FarmerDetails person)
         {
-          
+
             string userId = ((System.Security.Claims.ClaimsIdentity)User.Identity).
                                 FindFirst("UserId").Value;
             //FarmerDetails person = new FarmerDetails();
@@ -70,15 +104,16 @@ namespace PickMyCropBackend.Controllers
                     "',`AddressLine1` = '" + person.AddressLine_1 +
                     "',`AddressLine2` = '" + person.AddressLine_2 +
                     "',`City` = '" + person.City +
+                    "',`FilePath` = '" + person.imageSrc +
                     "',`AboutMe` = '" + person.AboutMe +
                     "',`RoleType` = '" + person.roleType +
                     "' WHERE (`UserId` = '" + userId + "');";
-                
+
                 MySqlCommand cmd = new MySqlCommand(temp, con);
-               
+
                 con.Open();
                 cmd.ExecuteNonQuery();
-         
+
 
             }
 
@@ -90,7 +125,7 @@ namespace PickMyCropBackend.Controllers
         [Route("UpdateUserPhoto")]
         public bool UpdateUserPhoto(string path)
         {
-            string val=ImageToBase64(path);
+            string val = ImageToBase64(path);
             //FarmerDetails person = new FarmerDetails();
             //using (MySqlConnection con = new MySqlConnection(connString))
             //{
@@ -111,7 +146,7 @@ namespace PickMyCropBackend.Controllers
 
             //    con.Open();
             //    cmd.ExecuteNonQuery();
-                
+
 
             //}
 
@@ -121,10 +156,11 @@ namespace PickMyCropBackend.Controllers
         public static string ImageToBase64(string path)
         {
             //string path = "D:/photo/a.jpg";
-           // var newstr = path.Replace(@"\\", @"/");
+            // var newstr = path.Replace(@"\\", @"/");
             string[] a = path.Split(new[] { '\\', '\\' });
-            string temp=null;
-            for (var i = 0; i < a.Length; i++) {
+            string temp = null;
+            for (var i = 0; i < a.Length; i++)
+            {
                 if (i == 0)
                 {
                     temp = a[i];

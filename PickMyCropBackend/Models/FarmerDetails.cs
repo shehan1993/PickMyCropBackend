@@ -13,8 +13,10 @@ namespace PickMyCropBackend.Models
         public string LastName { get; set; }
 
         public string pathValue { get; set; }
-     
+
         public string Email { get; set; }
+        public string imageSrc { get; set; }
+
         public int roleType { get; set; }
         //public Boolean buyerrole { get; set; }
         public string ContactNumber { get; set; }
