@@ -379,6 +379,10 @@
     <Compile Include="Migrations\201902171634125_add veg id to advert.Designer.cs">
       <DependentUpon>201902171634125_add veg id to advert.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902171749138_add another same dto.cs" />
+    <Compile Include="Migrations\201902171749138_add another same dto.Designer.cs">
+      <DependentUpon>201902171749138_add another same dto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -388,6 +392,7 @@
     <Compile Include="Models\Data\Db.cs" />
     <Compile Include="Models\Data\ImagesForAdDTO.cs" />
     <Compile Include="Models\Data\QuestionDTO.cs" />
+    <Compile Include="Models\Data\TestAdDTO.cs" />
     <Compile Include="Models\Data\VegCategoryDTO.cs" />
     <Compile Include="Models\FarmerDetails.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -509,6 +514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902171634125_add veg id to advert.resx">
       <DependentUpon>201902171634125_add veg id to advert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902171749138_add another same dto.resx">
+      <DependentUpon>201902171749138_add another same dto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

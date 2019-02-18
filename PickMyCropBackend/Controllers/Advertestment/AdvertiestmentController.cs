@@ -30,6 +30,25 @@ namespace PickMyCropBackend.Controllers.Advertestment
                 return model;
             }   
         }
+
+        //[AllowAnonymous]
+        //public AdvertisetmentVM GetAllWithoutImage()
+        //{
+        //    using (ApplicationDbContext db = new ApplicationDbContext())
+        //    {
+        //        AdvertisetmentDTO adDTO = db.Advertisetment.fi;
+        //        if (adDTO == null)
+        //        {
+        //            throw new Exception("No such advertisetment");
+        //        }
+        //        List<ImagesForAdDTO> imgObj = db.ImageForAdvertiestment.Where(x => x.AdvertisetmentId == adDTO.Id).ToArray().ToList();
+        //        AdvertisetmentVM model = new AdvertisetmentVM(adDTO);
+        //        string[] imgs = imgObj.Select(x => x.Image).ToArray();
+        //        model.Image = imgs;
+        //        return model;
+        //    }
+        //}
+
         //POST: Advertiestment
         [HttpPost]
         [Route("api/UploadImage")]
