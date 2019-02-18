@@ -322,6 +322,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AddDetailsController.cs" />
     <Compile Include="Controllers\Advertestment\AdvertiestmentController.cs" />
     <Compile Include="Controllers\ImageController.cs" />
     <Compile Include="Controllers\QnA\AnswerController.cs" />
@@ -386,7 +387,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdvertisingDetails.cs" />
+    <Compile Include="Models\Count.cs" />
     <Compile Include="Models\DashboardAdvertise.cs" />
+    <Compile Include="Models\DataFormatConverter.cs" />
     <Compile Include="Models\Data\AdvertisetmentDTO.cs" />
     <Compile Include="Models\Data\AnswerDTO.cs" />
     <Compile Include="Models\Data\Db.cs" />
@@ -395,8 +399,13 @@
     <Compile Include="Models\Data\TestAdDTO.cs" />
     <Compile Include="Models\Data\VegCategoryDTO.cs" />
     <Compile Include="Models\FarmerDetails.cs" />
+    <Compile Include="Models\Filter.cs" />
+    <Compile Include="Models\FindFarmers.cs" />
+    <Compile Include="Models\Haversine.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\Sorting.cs" />
+    <Compile Include="Models\StructData.cs" />
     <Compile Include="Models\ViewModels\AdvertiestmentVM.cs" />
     <Compile Include="Models\ViewModels\AnswerVM.cs" />
     <Compile Include="Models\ViewModels\QuestionVM.cs" />
